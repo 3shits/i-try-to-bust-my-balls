@@ -32,9 +32,7 @@ export class CheeseMissile {
     this.cheese.position.set(this.startPos.x, this.startPos.y, this.startPos.z);
     this.scene.add(this.cheese);
 
-    this.hitTrigger = new HitTrigger(() => {
-      console.log("Hit mkc");
-    }, this.cheese);
+    this.hitTrigger = new HitTrigger(() => {}, this.cheese);
 
     this.loaded = true;
   }

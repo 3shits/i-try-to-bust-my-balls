@@ -102,7 +102,6 @@ export class Level2 extends Level {
       new Vector3(1, 0, -2),
       new Vector3(10, 10, 2),
       () => {
-        console.log("chase started");
         this.startChase();
       }
     );
@@ -110,7 +109,6 @@ export class Level2 extends Level {
       new Vector3(0, 0, 165),
       new Vector3(10, 10, 2),
       () => {
-        console.log("chase end");
         this.endChase();
       }
     );

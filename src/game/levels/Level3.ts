@@ -24,7 +24,8 @@ import { Trigger } from "../Trigger";
 import { CheeseMissile } from "../CheeseMissile";
 import { TpMissile } from "../TpMissile";
 import { gameProperties } from "../../core/properties";
-import { showObjective } from "../../UI";
+import { hidePlaylist, showObjective, showPlaylist } from "../../UI";
+import { isShooting } from "../../core/input";
 
 export class Level3 extends Level {
   bossSet = false;
@@ -35,7 +36,6 @@ export class Level3 extends Level {
     max: new Vector3(20, 35, 40),
   };
   gameScene: BaseScene;
-  time = 0;
   robot!: GLTF;
   RobotMixer!: AnimationMixer;
   robotBoxTrigger!: Trigger;
@@ -68,6 +68,8 @@ export class Level3 extends Level {
   bossAudio!: Audio;
   winAudio!: Audio;
   listener = new AudioListener();
+  showPic = false;
+  PicTriggered = false;
   constructor(scene: Scene) {
     scene.background = new Color(0x86ceee);
     super(new Vector3(7, 32, -55), scene);
@@ -99,7 +101,6 @@ export class Level3 extends Level {
       new Vector3(8, 30, 16),
       new Vector3(100, 50, 5),
       () => {
-        console.log("boss fight");
         this.SpawnBoss();
         this.bossAction = this.Bossmixer.clipAction(this.boss.animations[0]);
         this.bossAction.play();
@@ -142,7 +143,6 @@ export class Level3 extends Level {
         this.isReloading = true;
       }
       if (this.cheese.getFinished()) this.isReloading = false;
-      // console.log(this.cheese.cheese);
 
       this.tp.update(
         dt,
@@ -194,6 +194,12 @@ export class Level3 extends Level {
         setTimeout(() => {
           showObjective("Happy Birthday NOOB \nI LOVE YOU.", true);
         }, 10000);
+        setTimeout(() => {
+          showObjective("Hold Down Mouse Button");
+        }, 15000);
+        setTimeout(() => {
+          showObjective("Happy Birthdayyyy.");
+        }, 18000);
       }
     );
     this.configureFlowers();
@@ -260,7 +266,6 @@ export class Level3 extends Level {
     }
   }
   update(dt: number) {
-    this.time += dt;
     if (!this.loaded) return;
     this.ToiletAmmoFollower(dt);
     this.BossEntrySequence(dt);
@@ -282,6 +287,17 @@ export class Level3 extends Level {
     }
 
     if (this.growflowers) {
+      let trigger = isShooting();
+      if (trigger !== this.PicTriggered) {
+        if (!this.showPic) {
+          showPlaylist();
+          this.showPic = true;
+        } else {
+          hidePlaylist();
+          this.showPic = false;
+        }
+        this.PicTriggered = trigger;
+      }
       this.flowersModels.children.forEach((f) => {
         if (f.position.distanceTo(this.player.object.position) <= 10) {
           f.scale.lerp(this.scaleVector, 5 * dt);

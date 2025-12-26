@@ -23,7 +23,7 @@ export class TpMissile {
     this.model = await loadGLTF("models/tp.glb");
     this.tp = this.model.scene;
     this.tp.position.set(playerPos.x, playerPos.y + 0.5, playerPos.z - 0.5);
-    this.hit = new BoxTrigger(() => console.log("Mor bara"), this.tp);
+    this.hit = new BoxTrigger(() => {}, this.tp);
     this.loaded = true;
   }
 
@@ -57,7 +57,7 @@ export class TpMissile {
         this.hit.update(bossBox);
         const center = new Vector3();
         this.hit.box.getCenter(center);
-        // console.log(center);
+        
       } else {
         this.tp.position.lerp(playerPos, 0.5);
       }

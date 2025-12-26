@@ -10,10 +10,10 @@ export class ForestScene extends BaseScene {
     return this.environment;
   }
   async load() {
-    const forest = await loadGLTF("/models/forest.glb");
+    const forest = await loadGLTF("models/forest.glb");
     forest.scene.scale.set(4, 4, 4);
     this.environment.add(forest.scene);
-    const waterfall = await loadGLTF("/models/waterfall.glb");
+    const waterfall = await loadGLTF("models/waterfall.glb");
     waterfall.scene.position.set(-86, -16, -20);
     waterfall.scene.rotation.y = -Math.PI;
     waterfall.scene.scale.set(2, 2, 2);

@@ -152,18 +152,18 @@ export class Level2 extends Level {
   }
   async load() {
     await this.gameScene.load();
-    this.boss = await loadGLTF("/models/boss.glb");
+    this.boss = await loadGLTF("models/boss.glb");
     this.mixer = new AnimationMixer(this.boss.scene);
 
     this.scene.add(this.world);
-    this.tp = await loadGLTF("/models/tp.glb");
+    this.tp = await loadGLTF("models/tp.glb");
     this.tp.scene.position.z = 260;
     this.tp.scene.position.y = 2;
     this.scene.add(this.tp.scene);
     this.setTriggers();
     showObjective("Explore the Cave");
-    this.audio = await loadAudio("/sounds/level2.mp3", this.listener);
-    this.cheeseAudio = await loadAudio("/sounds/cheese.mp3", this.listener);
+    this.audio = await loadAudio("sounds/level2.mp3", this.listener);
+    this.cheeseAudio = await loadAudio("sounds/cheese.mp3", this.listener);
     this.cheeseAudio.setLoop(true);
     this.loaded = true;
   }

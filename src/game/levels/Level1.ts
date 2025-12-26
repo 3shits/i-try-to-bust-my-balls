@@ -51,7 +51,7 @@ export class Level1 extends Level {
     this.setTrigger();
     this.scene.add(this.world);
     showObjective("Find the Waterfall");
-    this.audio = await loadAudio("/sounds/level1.mp3", this.listener);
+    this.audio = await loadAudio("sounds/level1.mp3", this.listener);
 
     this.loaded = true;
   }

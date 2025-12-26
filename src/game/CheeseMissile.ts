@@ -19,7 +19,7 @@ export class CheeseMissile {
     this.scene = scene;
   }
   async load() {
-    this.model = await loadGLTF("/models/cheese.glb");
+    this.model = await loadGLTF("models/cheese.glb");
     this.cheese = this.model.scene;
     this.cheese.scale.set(1, 1, 1);
     this.cheese.rotation.y = Math.PI / 2;

@@ -20,7 +20,7 @@ export class TpMissile {
     this.scene = scene;
   }
   async load(playerPos: Vector3) {
-    this.model = await loadGLTF("/models/tp.glb");
+    this.model = await loadGLTF("models/tp.glb");
     this.tp = this.model.scene;
     this.tp.position.set(playerPos.x, playerPos.y + 0.5, playerPos.z - 0.5);
     this.hit = new BoxTrigger(() => console.log("Mor bara"), this.tp);

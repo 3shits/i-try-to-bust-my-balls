@@ -26,7 +26,6 @@ import { TpMissile } from "../TpMissile";
 import { gameProperties } from "../../core/properties";
 import { showObjective } from "../../UI";
 
-
 export class Level3 extends Level {
   bossSet = false;
   world!: Group;
@@ -158,7 +157,7 @@ export class Level3 extends Level {
   async load() {
     await this.gameScene.load();
     this.worldBox = new Box3(this.worldBoxBounds.min, this.worldBoxBounds.max);
-    this.boss = await loadGLTF("/models/boss.glb");
+    this.boss = await loadGLTF("models/boss.glb");
     this.Bossmixer = new AnimationMixer(this.boss.scene);
     this.scene.add(this.world);
     this.setTriggers();
@@ -166,22 +165,22 @@ export class Level3 extends Level {
     await this.cheese.load();
     this.tp = new TpMissile(this.scene);
     await this.tp.load(this.player.object.position);
-    this.vizTp = (await loadGLTF("/models/tp.glb")).scene;
+    this.vizTp = (await loadGLTF("models/tp.glb")).scene;
     this.vizTp.scale.set(0.6, 0.6, 0.6);
     this.scene.add(this.vizTp);
     this.bossHpTrigger = new Box3();
     this.flowers.push(
-      (await loadGLTF("/models/sunflower.glb")).scene,
-      (await loadGLTF("/models/tulip.glb")).scene
+      (await loadGLTF("models/sunflower.glb")).scene,
+      (await loadGLTF("models/tulip.glb")).scene
     );
-    this.robot = await loadGLTF("/models/robot.glb");
+    this.robot = await loadGLTF("models/robot.glb");
     this.robot.scene.scale.set(0.8, 0.8, 0.8);
     this.robot.scene.position.set(13, 32, 53.5);
     this.robot.scene.rotation.y += Math.PI;
     this.RobotMixer = new AnimationMixer(this.robot.scene);
-    this.bossAudio = await loadAudio("/sounds/level3.mp3", this.listener);
+    this.bossAudio = await loadAudio("sounds/level3.mp3", this.listener);
     this.bossAudio.play();
-    this.winAudio = await loadAudio("/sounds/win.mp3", this.listener);
+    this.winAudio = await loadAudio("sounds/win.mp3", this.listener);
     this.winAudio.setLoop(true);
     this.scene.add(this.robot.scene);
     this.robotBoxTrigger = new Trigger(

@@ -42,8 +42,8 @@ export type GameAssets = {
 export const LoadAssets = async (): Promise<GameAssets> => {
   try {
     const [player, pet] = await Promise.all([
-      loadGLTF("/models/player.gltf"),
-      loadGLTF("/models/pet.glb"),
+      loadGLTF("models/player.gltf"),
+      loadGLTF("models/pet.glb"),
     ]);
 
     return {

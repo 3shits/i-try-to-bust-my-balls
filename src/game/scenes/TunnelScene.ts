@@ -11,7 +11,7 @@ import { loadGLTF } from "../../core/assets";
 import { BaseScene } from "./BaseScene";
 import { Lights } from "../Lights";
 
-const tpModel = await loadGLTF("/models/tp.glb");
+const tpModel = await loadGLTF("models/tp.glb");
 
 export class TunnelScene extends BaseScene {
   tp = tpModel.scene;
@@ -47,16 +47,16 @@ export class TunnelScene extends BaseScene {
     plane.position.set(0, -4.5, 75);
     this.environment.add(plane);
 
-    const island = await loadGLTF("/models/island.glb");
+    const island = await loadGLTF("models/island.glb");
     island.scene.scale.set(10, 10, 10);
     island.scene.position.y = -3.5;
     island.scene.position.z = 180;
     this.environment.add(island.scene);
 
     const islands = await Promise.all([
-      loadGLTF("/models/island.glb"),
-      loadGLTF("/models/island.glb"),
-      loadGLTF("/models/island.glb"),
+      loadGLTF("models/island.glb"),
+      loadGLTF("models/island.glb"),
+      loadGLTF("models/island.glb"),
     ]);
 
     islands.map((i, ind) => {
@@ -68,7 +68,7 @@ export class TunnelScene extends BaseScene {
       this.environment.add(i.scene);
     });
 
-    const tpIsland = await loadGLTF("/models/small-island.glb");
+    const tpIsland = await loadGLTF("models/small-island.glb");
     tpIsland.scene.scale.set(15, 15, 15);
     tpIsland.scene.rotation.y = -Math.PI / 2;
     tpIsland.scene.position.y = -8;
